@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TL内测版 - 抢先体验最新AI音乐分离技术</title>
-<meta name="description" content="TL内测版，抢先体验基于最新 HTDemucs v4.1 引擎的 AI 音乐分离技术，参与内测获取优先体验权，抢先使用未公开功能。">
-<meta name="keywords" content="内测版,测试版,抢先体验,AI音乐分离,TL内测,tlstudio,内测招募">
+<title>TL-MAGIXBOX 魔盒 - 我的世界启动器 · 模组 · 整合包 · 一键联机</title>
+<meta name="description" content="TL-MAGIXBOX 魔盒，简约好看、小白也能用的我的世界(Minecraft)启动器。支持模组下载、整合包导入导出、一键联机、自动安装 Java，完全免费离线畅玩。">
+<meta name="keywords" content="我的世界启动器,Minecraft启动器,魔盒,TL-MAGIXBOX,模组下载,整合包,联机,离线启动器">
 <meta name="robots" content="index, follow">
 <style>
 /* ========== Reset & Base ========== */
@@ -17,8 +17,9 @@
   --border: rgba(255,255,255,0.10);
   --text: #f2f4f8;
   --text-secondary: #8b93a5;
-  --accent: #57e6ff;
-  --accent-hover: #7a6bff;
+  --accent: #4ade80;
+  --accent2: #22d3ee;
+  --accent-hover: #22d3ee;
   --success: #34d399;
   --error: #f87171;
   --purple: #7a6bff;
@@ -60,9 +61,10 @@ a { text-decoration: none; color: inherit; }
   font-weight: 700; font-size: 1.05rem; color: var(--text);
 }
 .nav-logo {
-  width: 30px; height: 30px; background: var(--accent);
+  width: 30px; height: 30px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
   border-radius: 7px; display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;
+  color: #04120a; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.5px;
 }
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
@@ -85,7 +87,7 @@ a { text-decoration: none; color: inherit; }
   position: relative; min-height: 100vh;
   display: flex; align-items: center; justify-content: center;
   text-align: center; overflow: hidden;
-  background: linear-gradient(170deg, #0a1220 0%, #0a0a0e 40%, #141026 70%, #0a0a0e 100%);
+  background: linear-gradient(170deg, #06140d 0%, #0a0a0e 40%, #0e1426 70%, #0a0a0e 100%);
 }
 #heroCanvas {
   position: absolute; inset: 0; z-index: 0;
@@ -93,13 +95,13 @@ a { text-decoration: none; color: inherit; }
 }
 .hero-content {
   position: relative; z-index: 1;
-  max-width: 760px; padding: 120px 24px 80px;
+  max-width: 780px; padding: 120px 24px 80px;
   opacity: 0; transform: translateY(32px);
   animation: heroFadeIn 1s ease 0.3s forwards;
 }
 .hero-mask {
   width: 72px; height: 72px; margin: 0 auto 20px;
-  filter: drop-shadow(0 4px 12px rgba(87,230,255,0.25));
+  filter: drop-shadow(0 4px 12px rgba(74,222,128,0.28));
   animation: maskPulse 3s ease-in-out infinite;
 }
 @keyframes maskPulse {
@@ -112,14 +114,14 @@ a { text-decoration: none; color: inherit; }
 .hero-badge {
   display: inline-block;
   padding: 5px 14px; border-radius: 20px;
-  background: rgba(87,230,255,0.08); color: var(--accent);
+  background: rgba(74,222,128,0.08); color: var(--accent);
   font-size: 0.8rem; font-weight: 600; margin-bottom: 24px;
 }
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.4rem);
   font-weight: 800; line-height: 1.2;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 60%, var(--accent2) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -131,16 +133,16 @@ a { text-decoration: none; color: inherit; }
 .btn-primary {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 16px 40px; border-radius: 12px;
-  background: var(--accent); color: #fff;
-  font-size: 1.05rem; font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #04120a;
+  font-size: 1.05rem; font-weight: 700;
   border: none; cursor: pointer;
   transition: all 0.25s;
-  box-shadow: 0 4px 16px rgba(87,230,255,0.25);
+  box-shadow: 0 4px 16px rgba(74,222,128,0.25);
 }
 .btn-primary:hover {
-  background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(87,230,255,0.30);
+  box-shadow: 0 8px 24px rgba(74,222,128,0.35);
+  filter: brightness(1.05);
 }
 .btn-primary:active { transform: translateY(0); }
 .btn-primary svg { width: 18px; height: 18px; }
@@ -163,12 +165,12 @@ section { padding: 100px 0; }
 .text-center { text-align: center; }
 
 /* ========== Features ========== */
-.features { background: var(--bg); }
+.features { background: var(--panel); }
 .features-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
 }
 .feature-card {
-  background: var(--panel); border: 1px solid var(--border);
+  background: var(--bg); border: 1px solid var(--border);
   border-radius: 16px; padding: 36px 28px;
   text-align: center;
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -176,13 +178,13 @@ section { padding: 100px 0; }
 }
 .feature-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: var(--accent);
+  height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2));
   transform: scaleX(0); transition: transform 0.35s;
 }
 .feature-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 32px rgba(255,255,255,0.07);
-  border-color: rgba(87,230,255,0.20);
+  border-color: rgba(74,222,128,0.22);
 }
 .feature-card:hover::before { transform: scaleX(1); }
 .feature-icon {
@@ -196,49 +198,11 @@ section { padding: 100px 0; }
   font-size: 0.88rem; color: var(--text-secondary); line-height: 1.55;
 }
 
-/* ========== Highlights ========== */
-.highlights { background: var(--panel); }
+/* ========== Highlights（联机） ========== */
+.highlights { background: var(--bg); }
 .highlights-row {
   display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
   align-items: center;
-}
-.mockup-frame {
-  background: var(--bg); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden;
-  box-shadow: 0 12px 40px rgba(255,255,255,0.07);
-  aspect-ratio: 4/3;
-  display: flex; flex-direction: column;
-}
-.mockup-titlebar {
-  height: 36px; background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; padding: 0 14px; gap: 7px;
-}
-.mockup-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-}
-.mockup-dot:nth-child(1) { background: var(--error); }
-.mockup-dot:nth-child(2) { background: #d29922; }
-.mockup-dot:nth-child(3) { background: var(--success); }
-.mockup-body {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 16px;
-  padding: 24px;
-}
-.mockup-body .mock-wave {
-  display: flex; align-items: center; gap: 3px;
-}
-.mockup-body .mock-bar {
-  width: 4px; border-radius: 2px; background: var(--accent);
-  opacity: 0.35;
-}
-.mockup-body .mock-label {
-  font-size: 0.75rem; color: var(--text-secondary);
-}
-.mockup-body .mock-btn {
-  padding: 8px 24px; border-radius: 8px;
-  background: var(--accent); color: #fff; font-size: 0.8rem;
-  border: none; opacity: 0.6;
 }
 .highlights-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
 .highlights-list li {
@@ -248,20 +212,38 @@ section { padding: 100px 0; }
   width: 44px; height: 44px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.3rem; flex-shrink: 0;
-  background: var(--bg); border: 1px solid var(--border);
+  background: var(--panel); border: 1px solid var(--border);
 }
 .hl-text h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
 .hl-text p { font-size: 0.88rem; color: var(--text-secondary); }
+.highlight-panel {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 20px; padding: 28px;
+  box-shadow: 0 12px 40px rgba(255,255,255,0.06);
+}
+.highlight-panel .step {
+  display: flex; gap: 14px; align-items: center;
+  padding: 14px 0;
+}
+.highlight-panel .step + .step { border-top: 1px solid var(--border); }
+.step-num {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #04120a; font-weight: 800; font-size: 0.95rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.step-body h5 { font-size: 0.95rem; font-weight: 700; }
+.step-body p { font-size: 0.82rem; color: var(--text-secondary); }
 
 /* ========== Tech Specs ========== */
-.tech-specs { background: var(--bg); }
+.tech-specs { background: var(--panel); }
 .tech-tags {
   display: flex; flex-wrap: wrap; gap: 12px;
   justify-content: center; margin-bottom: 48px;
 }
 .tech-tag {
   padding: 10px 20px; border-radius: 10px;
-  background: var(--panel); border: 1px solid var(--border);
+  background: var(--bg); border: 1px solid var(--border);
   font-size: 0.9rem; font-weight: 600;
   transition: all 0.25s;
 }
@@ -269,13 +251,13 @@ section { padding: 100px 0; }
   border-color: var(--accent); color: var(--accent);
   transform: translateY(-2px);
 }
-.tech-tag.accent { border-color: var(--accent); color: var(--accent); background: rgba(87,230,255,0.06); }
+.tech-tag.accent { border-color: var(--accent); color: var(--accent); background: rgba(74,222,128,0.06); }
 .tech-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  max-width: 800px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+  max-width: 900px; margin: 0 auto;
 }
 .tech-item {
-  background: var(--panel); border: 1px solid var(--border);
+  background: var(--bg); border: 1px solid var(--border);
   border-radius: 12px; padding: 24px; text-align: center;
 }
 .tech-item h4 { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 8px; }
@@ -283,7 +265,7 @@ section { padding: 100px 0; }
 
 /* ========== CTA Bottom ========== */
 .cta-bottom {
-  background: linear-gradient(170deg, #0a1220 0%, #141026 100%);
+  background: linear-gradient(170deg, #06140d 0%, #0e1426 100%);
   text-align: center; padding: 100px 0;
 }
 .cta-bottom h2 {
@@ -315,15 +297,14 @@ section { padding: 100px 0; }
 }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
 .modal-dialog {
-  background: rgba(16,18,24,0.8);
+  background: rgba(16,18,24,0.85);
   border-radius: 28px;
   padding: 40px 32px 32px;
   max-width: 500px; width: 90%;
   box-shadow:
     0 8px 32px rgba(0,0,0,0.08),
     0 2px 8px rgba(0,0,0,0.04),
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    inset 0 -1px 0 rgba(0,0,0,0.04);
+    inset 0 1px 0 rgba(255,255,255,0.08);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px) saturate(180%);
   border: 1px solid rgba(255,255,255,0.08);
@@ -337,8 +318,6 @@ section { padding: 100px 0; }
   width: 32px; height: 32px; border-radius: 50%;
   border: none;
   background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   font-size: 1.15rem; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--text-secondary); transition: all 0.25s;
@@ -352,34 +331,30 @@ section { padding: 100px 0; }
   font-size: 0.85rem; color: var(--text-secondary);
   text-align: center; margin-bottom: 28px;
 }
-.download-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.download-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .download-option {
   display: flex; align-items: center; gap: 12px;
   padding: 14px 16px; border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.07);
   background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   cursor: pointer; text-decoration: none; color: inherit;
   transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
 }
 .download-option:hover {
   background: rgba(255,255,255,0.08);
-  border-color: rgba(87,230,255,0.15);
+  border-color: rgba(74,222,128,0.20);
   box-shadow: 0 4px 16px rgba(255,255,255,0.07);
   transform: translateY(-2px);
 }
 .download-option .dl-icon {
   width: 44px; height: 44px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; font-weight: 800;
-  color: #fff; flex-shrink: 0;
+  font-size: 1.3rem; font-weight: 800; flex-shrink: 0;
 }
+.download-option .dl-icon svg { width: 22px; height: 22px; }
 .download-option .dl-info { flex: 1; }
 .download-option .dl-name { font-weight: 700; font-size: 0.95rem; }
 .download-option .dl-code { font-size: 0.78rem; color: var(--text-secondary); margin-top: 2px; }
-.download-option .dl-icon svg { width: 22px; height: 22px; }
-.download-option .dl-arrow { color: var(--text-secondary); font-size: 0.9rem; }
 
 /* ========== Footer ========== */
 .footer {
@@ -419,7 +394,6 @@ section { padding: 100px 0; }
   .tech-grid { grid-template-columns: 1fr; }
   .hero h1 { font-size: 2rem; }
   section { padding: 64px 0; }
-  .download-options { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -429,15 +403,14 @@ section { padding: 100px 0; }
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <div class="nav-brand">
-      <div class="nav-logo">TL</div>
-      <span>TL内测版</span>
+      <div class="nav-logo">魔盒</div>
+      <span>TL-MAGIXBOX 魔盒</span>
     </div>
     <div class="nav-links" id="navLinks">
-         <a href="#features">内测新特性</a>
-      <a href="#highlights">参与方式</a>
-      <a href="#tech">测试规格</a>
-      <a href="./vip.html">会员入口</a>
-      <a href="http://tlstudio.cn/neice.html">测试版本入口</a>
+      <a href="#features">功能特色</a>
+      <a href="#lan">一键联机</a>
+      <a href="#tech">技术规格</a>
+      <a href="#download" onclick="showDownloadModal();return false">下载</a>
     </div>
     <div class="nav-hamburger" id="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -449,12 +422,22 @@ section { padding: 100px 0; }
 <section class="hero">
   <canvas id="heroCanvas"></canvas>
   <div class="hero-content">
-      <span class="hero-badge">🧪 内测招募 · 抢先体验</span>
-    <h1>TL内测版<br>抢先体验全新分离引擎</h1>
-    <p>最新模型、未公开功能、优先体验权 — 加入内测，抢先一步感受下一代音乐分离技术</p>
-    <a href="#" class="btn-primary" onclick="showDownloadModal();return false">
+    <div class="hero-mask">
+      <svg viewBox="0 0 24 24" fill="none" stroke="url(#boxGrad)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:100%">
+        <defs><linearGradient id="boxGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#4ade80"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs>
+        <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/>
+        <path d="M12 3v9"/>
+        <path d="M12 12l8-4.5"/>
+        <path d="M12 12l-8-4.5"/>
+        <path d="M4 7.5v9l8 4.5"/>
+      </svg>
+    </div>
+    <span class="hero-badge">🆓 完全免费 · 离线畅玩</span>
+    <h1>TL-MAGIXBOX 魔盒<br>我的世界启动器</h1>
+    <p>简约 · 好看 · 小白也能用 — 模组、整合包、一键联机，一个启动器全搞定</p>
+    <a href="#download" class="btn-primary" onclick="showDownloadModal();return false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      立即加入内测
+      立即下载
     </a>
   </div>
 </section>
@@ -462,83 +445,89 @@ section { padding: 100px 0; }
 <!-- Features -->
 <section class="features" id="features">
   <div class="container text-center">
-    <span class="section-label reveal">内测新特性</span>
-    <h2 class="section-title reveal">全新引擎，更强分离能力</h2>
-    <p class="section-desc reveal">内测版搭载最新优化模型，带来更精准、更快速的音轨分离体验</p>
+    <span class="section-label reveal">核心能力</span>
+    <h2 class="section-title reveal">为小白与进阶玩家而生</h2>
+    <p class="section-desc reveal">从下载到进游戏，每一步都被照顾到</p>
     <div class="features-grid">
       <div class="feature-card reveal">
-        <span class="feature-icon">⚡</span>
-        <h3>速度提升</h3>
-        <p>分离速度提升 40%，大文件也能秒级处理</p>
+        <span class="feature-icon">🚀</span>
+        <h3>一键启动</h3>
+        <p>版本、加载器、内存自动配好，点一下就能进游戏</p>
       </div>
       <div class="feature-card reveal">
-        <span class="feature-icon">🎯</span>
-        <h3>精度增强</h3>
-        <p>全新算法大幅减少人声残留，分离更干净</p>
+        <span class="feature-icon">🧩</span>
+        <h3>模组中心</h3>
+        <p>接入 Modrinth，搜索即装，前置依赖自动补齐</p>
       </div>
       <div class="feature-card reveal">
-        <span class="feature-icon">🎛️</span>
-        <h3>参数可调</h3>
-        <p>开放高级参数调节，自定义你的分离效果</p>
+        <span class="feature-icon">📦</span>
+        <h3>整合包导入/导出</h3>
+        <p>自研 .tlmagicbox 格式，模组、配置、光影、存档一键打包</p>
       </div>
       <div class="feature-card reveal">
-        <span class="feature-icon">🔧</span>
-        <h3>实验功能</h3>
-        <p>抢先体验未公开的实验性音轨分离功能</p>
+        <span class="feature-icon">🌐</span>
+        <h3>一键联机</h3>
+        <p>局域网开服零配置，远程靠节点穿透，好友秒进</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">☕</span>
+        <h3>自动装 Java</h3>
+        <p>按版本自动匹配 Java 8 / 17 / 21，一键下载配置</p>
+      </div>
+      <div class="feature-card reveal">
+        <span class="feature-icon">🎨</span>
+        <h3>简约中文界面</h3>
+        <p>清爽深色 UI，全中文，无广告无弹窗</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Highlights -->
-<section class="highlights" id="highlights">
+<!-- Highlights（联机） -->
+<section class="highlights" id="lan">
   <div class="container">
     <div class="highlights-row">
-      <div class="mockup-frame reveal">
-        <div class="mockup-titlebar">
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-          <div class="mockup-dot"></div>
-        </div>
-        <div class="mockup-body">
-          <div class="mock-wave" id="mockWave"></div>
-          <span class="mock-label">TL内测版 </span>
-          <a href="#" class="mock-btn" onclick="showDownloadModal();return false">获取内测</a>
-        </div>
-      </div>
-      <div class="reveal">
-        <span class="section-label">为什么参与内测</span>
-        <h2 class="section-title">你的反馈，驱动产品进化</h2>
+      <div>
+        <span class="section-label reveal">一键联机</span>
+        <h2 class="section-title reveal">你的电脑当服务器</h2>
+        <p class="reveal" style="color:var(--text-secondary);margin-bottom:40px;">同 WiFi 直接局域网联机，异地靠中继节点穿透，三种玩法都简单</p>
         <ul class="highlights-list">
-          <li>
-            <div class="hl-icon">🚀</div>
+          <li class="reveal">
+            <span class="hl-icon">🏠</span>
             <div class="hl-text">
-              <h4>优先体验权</h4>
-              <p>比正式版提前数周体验最新功能，永远快人一步</p>
+              <h4>局域网开服</h4>
+              <p>一键启动本地服务器，同网好友填 IP 和端口即可进入</p>
             </div>
           </li>
-          <li>
-            <div class="hl-icon">💬</div>
+          <li class="reveal">
+            <span class="hl-icon">🛰️</span>
             <div class="hl-text">
-              <h4>直接反馈通道</h4>
-              <p>内测用户专属反馈入口，你的建议直达开发团队</p>
+              <h4>远程节点穿透</h4>
+              <p>填节点地址 + 房间码，把内网世界开放给异地好友</p>
             </div>
           </li>
-          <li>
-            <div class="hl-icon">🎁</div>
+          <li class="reveal">
+            <span class="hl-icon">🚪</span>
             <div class="hl-text">
-              <h4>内测专属福利</h4>
-              <p>参与内测可获正式版会员折扣及限量纪念标识</p>
-            </div>
-          </li>
-          <li>
-            <div class="hl-icon">🔬</div>
-            <div class="hl-text">
-              <h4>实验性功能</h4>
-              <p>解锁尚未公开的实验性音轨处理能力，尝鲜最新技术</p>
+              <h4>加入好友房间</h4>
+              <p>输入好友的节点和房间码，一键加入，无需公网 IP</p>
             </div>
           </li>
         </ul>
+      </div>
+      <div class="highlight-panel reveal">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div class="step-body"><h5>启动服务器</h5><p>选择版本，点「启动服务器」</p></div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div class="step-body"><h5>开启穿透</h5><p>生成 4 位房间码，复制节点地址</p></div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div class="step-body"><h5>好友加入</h5><p>好友填节点 + 房间码，一键进入</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -547,48 +536,53 @@ section { padding: 100px 0; }
 <!-- Tech Specs -->
 <section class="tech-specs" id="tech">
   <div class="container text-center">
-    <span class="section-label reveal">测试规格</span>
-    <h2 class="section-title reveal">内测版技术参数</h2>
-    <p class="section-desc reveal">搭载最新优化模型，内测版在精度与速度上均有显著提升</p>
+    <span class="section-label reveal">技术规格</span>
+    <h2 class="section-title reveal">轻量 · 极速 · 稳定</h2>
+    <p class="section-desc reveal">便携版免安装，解压即用，数据都在本地</p>
     <div class="tech-tags reveal">
-      <span class="tech-tag accent">HTDemucs v4.1+</span>
-      <span class="tech-tag accent">PyTorch 2.0</span>
-      <span class="tech-tag accent">FFmpeg</span>
-      <span class="tech-tag">MP3 输入</span>
-      <span class="tech-tag">WAV 输入</span>
-      <span class="tech-tag">FLAC 输入</span>
-      <span class="tech-tag">WAV 输出</span>
+      <span class="tech-tag accent">完全免费</span>
+      <span class="tech-tag accent">纯离线运行</span>
+      <span class="tech-tag accent">免安装便携版</span>
+      <span class="tech-tag">自动装 Java</span>
+      <span class="tech-tag">整合包 .tlmagicbox</span>
+      <span class="tech-tag">联机穿透</span>
+      <span class="tech-tag">国内下载加速</span>
     </div>
     <div class="tech-grid reveal">
       <div class="tech-item">
-        <h4>内测模型</h4>
-        <p>HTDemucs v4.1+</p>
+        <h4>运行平台</h4>
+        <p>Windows 10/11</p>
       </div>
       <div class="tech-item">
-        <h4>速度提升</h4>
-        <p>较正式版 +40%</p>
+        <h4>Java 支持</h4>
+        <p>8 / 17 / 21</p>
       </div>
       <div class="tech-item">
-        <h4>内测名额</h4>
-        <p>限量开放</p>
+        <h4>加载器</h4>
+        <p>原版 · Fabric · Quilt</p>
+      </div>
+      <div class="tech-item">
+        <h4>整合包格式</h4>
+        <p>.tlmagicbox</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CTA Bottom -->
-<section class="cta-bottom">
+<section class="cta-bottom" id="download">
   <div class="container reveal">
-    <h2>立即加入，抢先体验</h2>
-    <p class="cta-desc">内测名额有限，即刻加入，成为最早体验下一代音乐分离技术的用户</p>
+    <h2>现在下载，免费开玩</h2>
+    <p class="cta-desc">完全免费，无需注册，即刻开启你的方块世界</p>
     <a href="#" class="btn-primary" onclick="showDownloadModal();return false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      立即获取内测版
+      立即下载
     </a>
     <div class="badge-row">
-      <span class="badge">内测版 v3.0-beta</span>
+      <span class="badge">v0.1.0</span>
       <span class="badge">Windows</span>
-      <span class="badge">限量招募</span>
+      <span class="badge">免费</span>
+      <span class="badge">简体中文</span>
     </div>
   </div>
 </section>
@@ -597,33 +591,19 @@ section { padding: 100px 0; }
 <div class="modal-overlay" id="downloadModal">
   <div class="modal-dialog">
     <button class="modal-close" onclick="hideDownloadModal()">&times;</button>
-    <div class="modal-title">🧪 选择内测获取方式</div>
-    <div class="modal-subtitle">TL内测版 v3.0-beta · Windows 内测安装包</div>
-    <div id="gateBox" style="text-align:center;margin-bottom:16px;">
-      <div style="font-size:0.9rem;color:var(--text-secondary);margin-bottom:10px;">请输入您的 <b style="color:var(--accent);">QQ 号</b> 以解锁内测下载</div>
-      <input id="gateCode" type="text" inputmode="numeric" placeholder="请输入您的QQ号" autocomplete="off" style="width:100%;padding:12px 14px;border:1px solid rgba(255,255,255,0.15);border-radius:10px;background:#0d0f15;color:#fff;font-size:1rem;text-align:center;letter-spacing:2px;outline:none;" onkeydown="if(event.key==='Enter')checkDownloadCode()">
-      <button onclick="checkDownloadCode()" style="width:100%;margin-top:10px;padding:13px;border:none;border-radius:10px;background:linear-gradient(135deg,#57e6ff,#7a6bff);color:#fff;font-size:0.95rem;font-weight:700;cursor:pointer;">🔓 解锁下载</button>
-      <div id="gateMsg" style="margin-top:8px;font-size:0.85rem;font-weight:600;min-height:1.3em;"></div>
-    </div>
-    <div class="download-options" id="dlOptions" style="display:none;">
-      <a href="https://pan.baidu.com/s/5_sN_C1WK8djj3G6QOjS-cg" target="_blank" class="download-option">
+    <div class="modal-title">📥 选择下载方式</div>
+    <div class="modal-subtitle">TL magicbox-魔盒 v1.0 · 安装包</div>
+    <div class="download-options">
+      <a href="https://4000126973.share.123pan.cn/123pan/jl9UMh-x2kUv?pwd=mnL4#" target="_blank" class="download-option">
         <div class="dl-icon" style="background:linear-gradient(135deg,#3385ff,#2468e0)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><polyline points="12 12 12 19"/><polyline points="9 16 12 19 15 16"/></svg></div>
         <div class="dl-info">
-          <div class="dl-name">百度网盘</div>
+          <div class="dl-name">123网盘</div>
         </div>
         <span class="dl-arrow"></span>
-      </a>
-      <a href="https://pan.quark.cn/s/402f89d504c8" target="_blank" class="download-option">
-        <div class="dl-icon" style="background:linear-gradient(135deg,#1677ff,#0958d9)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="12" y1="15" x2="12" y2="22"/><line x1="2" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="22" y2="12"/></svg></div>
+      <a href="https://pan.quark.cn/s/f2d5c4db34b9" target="_blank" class="download-option">
+        <div class="dl-icon" style="background:linear-gradient(135deg,#3385ff,#2468e0)"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><polyline points="12 12 12 19"/><polyline points="9 16 12 19 15 16"/></svg></div>
         <div class="dl-info">
           <div class="dl-name">夸克网盘</div>
-        </div>
-        <span class="dl-arrow"></span>
-      </a>
-      <a href="https://pan.xunlei.com/s/VOzH6oVKNqtOqzD_9YNXGRtJA1?pwd=6739#" target="_blank" class="download-option">
-        <div class="dl-icon" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"><svg viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div class="dl-info">
-          <div class="dl-name">迅雷网盘</div>
         </div>
         <span class="dl-arrow"></span>
       </a>
@@ -634,11 +614,25 @@ section { padding: 100px 0; }
 <!-- Footer -->
 <footer class="footer">
   <div class="container">
-    <p>TL 工作室 &copy; 2026版权所有 · 内测版仅供测试用途</p>
+    <p>TL 工作室 &copy; 2026版权所有</p>
     <div class="footer-links">
-      <a href="#features">新特性</a>
-      <a href="#highlights">参与方式</a>
-      <a href="#tech">测试规格</a>
+      <a href="#install">安装说明</a>
+      <a href="#features">功能</a>
+      <a href="#tech">技术</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>TL 工作室 &copy; 2026 版权所有</p>
+    <div class="footer-links">
+      <a href="#features">功能</a>
+      <a href="#lan">联机</a>
+      <a href="#tech">技术</a>
+      <a href="#download" onclick="showDownloadModal();return false">下载</a>
     </div>
   </div>
 </footer>
@@ -662,53 +656,10 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ========== Mock Waveform ========== */
-(function() {
-  const wave = document.getElementById('mockWave');
-  const count = 50;
-  for (let i = 0; i < count; i++) {
-    const bar = document.createElement('div');
-    bar.className = 'mock-bar';
-    const h = 8 + Math.abs(Math.sin(i / count * Math.PI * 2)) * 30 + Math.random() * 12;
-    bar.style.height = h + 'px';
-    wave.appendChild(bar);
-  }
-})();
-
 /* ========== Download Modal ========== */
-/* ========== QQ 号门禁（每次打开都需重新输入，不做任何本地记忆） ========== */
 function showDownloadModal() {
   document.getElementById('downloadModal').classList.add('active');
   document.body.style.overflow = 'hidden';
-  setupGate();
-}
-function setupGate() {
-  document.getElementById('gateBox').style.display = 'block';
-  document.getElementById('dlOptions').style.display = 'none';
-  document.getElementById('gateMsg').textContent = '';
-}
-function checkDownloadCode() {
-  const v = (document.getElementById('gateCode').value || '').trim();
-  const msg = document.getElementById('gateMsg');
-  if (!v) { msg.textContent = '请输入您的QQ号'; msg.style.color = '#f87171'; return; }
-  /* QQ 号：纯数字，5~11 位，不以 0 开头 */
-  if (!/^[1-9][0-9]{4,10}$/.test(v)) {
-    msg.textContent = 'QQ号格式不正确，请检查后重试'; msg.style.color = '#f87171';
-    return;
-  }
-  document.getElementById('gateBox').style.display = 'none';
-  document.getElementById('dlOptions').style.display = 'grid';
-  msg.textContent = '✅ 解锁成功，请选择方式下载'; msg.style.color = '#34d399';
-  reportQQ(v, 'neice');
-}
-/* 上报 QQ 到收集接口（失败不阻塞下载） */
-function reportQQ(qq, page) {
-  const api = (typeof API_BASE !== 'undefined' && API_BASE) ? API_BASE : 'https://api.tlstudio.cn';
-  fetch(api + '/collect', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ qq, ref: page }),
-  }).catch(function () {});
 }
 function hideDownloadModal() {
   document.getElementById('downloadModal').classList.remove('active');
@@ -724,13 +675,12 @@ document.getElementById('downloadModal').addEventListener('click', function(e) {
   const ctx = canvas.getContext('2d');
   let W, H, particles = [];
   const PARTICLE_COUNT = 60;
-  const COLORS = ['rgba(87,230,255,0.18)', 'rgba(122,107,255,0.12)', 'rgba(244,114,182,0.10)', 'rgba(46,160,67,0.10)'];
+  const COLORS = ['rgba(74,222,128,0.16)', 'rgba(34,211,238,0.13)', 'rgba(122,107,255,0.10)', 'rgba(244,114,182,0.08)'];
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
   }
-
   class Particle {
     constructor() { this.reset(); }
     reset() {
@@ -755,16 +705,14 @@ document.getElementById('downloadModal').addEventListener('click', function(e) {
       ctx.fill();
     }
   }
-
   function init() {
     resize();
     particles = [];
     for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
   }
-
   function drawLines() {
     ctx.globalAlpha = 0.04;
-    ctx.strokeStyle = '#57e6ff';
+    ctx.strokeStyle = '#4ade80';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -780,7 +728,6 @@ document.getElementById('downloadModal').addEventListener('click', function(e) {
       }
     }
   }
-
   function loop() {
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 1;
@@ -789,7 +736,6 @@ document.getElementById('downloadModal').addEventListener('click', function(e) {
     ctx.globalAlpha = 1;
     requestAnimationFrame(loop);
   }
-
   window.addEventListener('resize', () => { resize(); });
   init();
   loop();
